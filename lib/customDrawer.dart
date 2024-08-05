@@ -36,7 +36,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
           //画面遷移を行うボタン名と移動先を必要に応じて記述
           listTile('ホーム', Icons.home, context, '/'),
           listTile('作成者用', Icons.create, context, '/creator'),
-          listTile('QR読み取り', Icons.qr_code_scanner, context, '/qr'),
+          listTile('3Dモデル表示', Icons.qr_code_scanner, context, '/qr'),
           //listTile('3Dモデル作成', Icons., context, ''),
           //listTile('3Dモデル確認', Icons., context, ''),
         ],
@@ -58,7 +58,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
       trailing: const Icon(Icons.arrow_circle_right),
       onTap: () {
         Navigator.pop(context); // Drawerを閉じる
-        Navigator.pushReplacementNamed(context, route); // 指定したルートに遷移
+        Navigator.pushNamed(context, route); // 指定したルートに遷移
       },
     );
   }
