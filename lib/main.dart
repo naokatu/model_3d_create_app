@@ -24,8 +24,8 @@ class MyApp extends StatelessWidget {
         initialRoute: '/',
         routes: <String, WidgetBuilder>{
           '/': (context) => const MainScreen(title: 'ホーム', child: MyHomePage(),isHome: true),
-          '/creator': (context) => const MainScreen(title: '作成者用', child: ModelCreatorPage(),isHome: false),
-          '/qr': (context) => const MainScreen(title: 'QR読み取り', child: QrReaderPage(),isHome: false)
+          '/creator': (context) => const MainScreen(title: '作成者用', child: ModelCreatorPage(),isHome: false, backRoute: '/'),//isHome: 戻るボタンの有無, backRoute: 戻るボタンの遷移先
+          '/qr': (context) => const MainScreen(title: 'QR読み取り', child: QrReaderPage(),isHome: false, backRoute: '/'),
         },
     );
   }
@@ -37,16 +37,18 @@ class MainScreen extends StatelessWidget {
     required this.title,
     required this.child,
     required this.isHome,
+    this.backRoute,
   });
 
   final String title;
   final Widget child;
   final bool isHome;
+  final String? backRoute;
 
   @override
   Widget build(BuildContext context) {
    return Scaffold(
-     appBar: Header(title: title,isHome: isHome),
+     appBar: Header(title: title,isHome: isHome, backRoute: backRoute),
      drawer: const CustomDrawer(),
      body: child,
    );
