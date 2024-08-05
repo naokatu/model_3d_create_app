@@ -17,8 +17,8 @@ class _MyHomePageState extends State<MyHomePage> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          SelectButton(buttonText: '作成者用', iconPath: 'images/ロボットアームのアイコン.png', nextPage: ModelCreatorPage()),
-          SelectButton(buttonText: '3Dモデル表示', iconPath: 'images/QR.png', nextPage: QrReaderPage())
+          SelectButton(buttonText: '作成者用', iconPath: 'images/ロボットアームのアイコン.png', nextPage: '/creator'),
+          SelectButton(buttonText: '3Dモデル表示', iconPath: 'images/QR.png', nextPage: '/qr')
         ],
       ),
     );
