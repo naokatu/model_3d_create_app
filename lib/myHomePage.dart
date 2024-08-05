@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import './selectButton.dart';
-import './modelCreatorPage.dart';
-import './qrReaderPage.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({ super.key });
