@@ -16,6 +16,7 @@ class MyApp extends StatelessWidget {
       title: '3D-create-app',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF1A237E)),
+        scaffoldBackgroundColor: const Color(0xFFFFF5F0),
         useMaterial3: true,
       ),
       home: const Scaffold(
