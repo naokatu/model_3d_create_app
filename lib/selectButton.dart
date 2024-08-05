@@ -10,7 +10,7 @@ class SelectButton extends StatelessWidget {
 
   final String buttonText;
   final String? iconPath;
-  final Widget nextPage;
+  final String nextPage;
 
   @override
   Widget build(BuildContext context) {
@@ -30,9 +30,7 @@ class SelectButton extends StatelessWidget {
       ),
       child: OutlinedButton(
           onPressed: () {
-            Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => nextPage),
-            );
+            Navigator.of(context).pushNamed(nextPage);
           },
           style: OutlinedButton.styleFrom(
             backgroundColor: Colors.white,
