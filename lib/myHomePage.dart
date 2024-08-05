@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import './selectButton.dart';
+import './modelCreatorPage.dart';
+import './qrReaderPage.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({ super.key });
@@ -10,14 +13,12 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return const Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Text(
-            'ホーム画面です',
-            style: Theme.of(context).textTheme.headlineMedium,
-          ),
+          SelectButton(buttonText: '作成者用', iconPath: 'images/ロボットアームのアイコン.png', nextPage: ModelCreatorPage()),
+          SelectButton(buttonText: '3Dモデル表示', iconPath: 'images/QR.png', nextPage: QrReaderPage())
         ],
       ),
     );
