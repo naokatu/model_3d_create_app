@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
 class Header extends StatelessWidget implements PreferredSizeWidget {
-  const Header({super.key, required this.title, this.isHome = false});
+  const Header({super.key, required this.title, this.isHome = false, this.backRoute});
 
   final String title;
   final bool isHome;
+  final String? backRoute;
   @override
   Widget build(BuildContext context) {
     return AppBar(
@@ -20,7 +21,11 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
               IconButton(
                 icon: const Icon(Icons.arrow_back),
                 onPressed: () {
-                  Navigator.pop(context);
+                  if (backRoute != null) {
+                    Navigator.pushNamedAndRemoveUntil(context, backRoute!, (Route<dynamic> route) => false);
+                  } else {
+                    Navigator.pop(context);
+                  }
                 },
               ),
             ],
