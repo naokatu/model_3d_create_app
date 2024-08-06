@@ -6,6 +6,7 @@ import './myHomePage.dart';
 import './customDrawer.dart';
 import './createModelPage.dart';
 import './listModelPage.dart';
+import './modelDetailPage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -25,6 +26,23 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
         ),
         initialRoute: '/',
+
+        onGenerateRoute: (settings) {
+        if (settings.name == '/model-detail') {
+          final args = settings.arguments as Map<String, String>;
+          return MaterialPageRoute(
+            builder: (context) {
+              return MainScreen(
+                title: args['title']!,
+                child: ModelDetailPage(content: args['title']!),
+                isHome: false,
+                backRoute: '/list',
+              );
+            },
+          );
+         }
+         return null;
+        },
         routes: <String, WidgetBuilder>{
           '/': (context) => const MainScreen(title: 'ホーム', child: MyHomePage(),isHome: true),
           '/creator': (context) => const MainScreen(title: '作成者用', child: ModelCreatorPage(),isHome: false, backRoute: '/'),//isHome: 戻るボタンの有無, backRoute: 戻るボタンの遷移先
