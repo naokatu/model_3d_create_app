@@ -42,7 +42,7 @@ class _ListModelPage extends State<ListModelPage> {
         return SelectButton(
             buttonText: _models[index],
             iconPath: null, // 画像はなし
-            nextPage: '', // 遷移は一旦無効、空文字列を指定
+            nextPage: '/model-detail', 
           );
       },
       
