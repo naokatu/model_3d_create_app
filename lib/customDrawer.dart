@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hack_3d_create_app/qrReaderPage.dart';
-import './modelCreatorPage.dart';
-import './myHomePage.dart';
+
 class CustomDrawer extends StatefulWidget {
   const CustomDrawer({super.key});
 
@@ -37,8 +35,8 @@ class _CustomDrawerState extends State<CustomDrawer> {
           listTile('ホーム', Icons.home, context, '/'),
           listTile('作成者用', Icons.create, context, '/creator'),
           listTile('3Dモデル表示', Icons.qr_code_scanner, context, '/qr'),
-          //listTile('3Dモデル作成', Icons., context, ''),
-          //listTile('3Dモデル確認', Icons., context, ''),
+          listTile('3Dモデル作成', Icons.camera_alt, context, '/create-model'),
+          listTile('3Dモデル確認', Icons.folder, context, '/list'),
         ],
       ),
     );
