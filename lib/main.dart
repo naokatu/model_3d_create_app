@@ -49,7 +49,6 @@ class MyApp extends StatelessWidget {
           '/qr': (context) => const MainScreen(title: 'QR読み取り', child: QrReaderPage(),isHome: false, backRoute: '/'),
           '/list': (context) => const MainScreen(title: '保存したモデル一覧', child: ListModelPage(), isHome: false, backRoute: '/creator'),
           '/create-model': (context) => const MainScreen(title: 'モデル作成画面', child: CreateModelPage(), isHome: false, backRoute: '/creator')
-          //'/model-detail': (context) => const MainScreen(title: '', child: CreateModelPage(), isHome: false, backRoute: '/list')
         },
     );
   }
