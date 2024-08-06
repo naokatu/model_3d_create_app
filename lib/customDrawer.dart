@@ -37,8 +37,8 @@ class _CustomDrawerState extends State<CustomDrawer> {
           listTile('ホーム', Icons.home, context, '/'),
           listTile('作成者用', Icons.create, context, '/creator'),
           listTile('3Dモデル表示', Icons.qr_code_scanner, context, '/qr'),
-          //listTile('3Dモデル作成', Icons., context, ''),
-          //listTile('3Dモデル確認', Icons., context, ''),
+          listTile('3Dモデル作成', Icons.camera_alt, context, '/create-model'),
+          listTile('3Dモデル確認', Icons.folder, context, '/list'),
         ],
       ),
     );
