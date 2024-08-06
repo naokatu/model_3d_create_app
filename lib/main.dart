@@ -4,6 +4,9 @@ import './modelCreatorPage.dart';
 import './header.dart';
 import './myHomePage.dart';
 import './customDrawer.dart';
+import './createModelPage.dart';
+import './listModelPage.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -26,6 +29,8 @@ class MyApp extends StatelessWidget {
           '/': (context) => const MainScreen(title: 'ホーム', child: MyHomePage(),isHome: true),
           '/creator': (context) => const MainScreen(title: '作成者用', child: ModelCreatorPage(),isHome: false, backRoute: '/'),//isHome: 戻るボタンの有無, backRoute: 戻るボタンの遷移先
           '/qr': (context) => const MainScreen(title: 'QR読み取り', child: QrReaderPage(),isHome: false, backRoute: '/'),
+          '/list': (context) => const MainScreen(title: '保存したモデル一覧', child: ListModelPage(), isHome: false, backRoute: '/creator'),
+          '/create-model': (context) => const MainScreen(title: 'モデル作成画面', child: CreateModelPage(), isHome: false, backRoute: '/creator')
         },
     );
   }
