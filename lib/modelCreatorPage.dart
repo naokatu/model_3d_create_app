@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './selectButton.dart';
 
 class ModelCreatorPage extends StatefulWidget {
   const ModelCreatorPage({super.key});
@@ -14,7 +15,14 @@ class _ModelCreatorPage extends State<ModelCreatorPage> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Text('作成者用ページです')
+          SelectButton(
+              buttonText: '3Dモデル作成',
+              iconPath: 'images/カメラアイコン.png',
+              nextPage: '/create-model'),
+          SelectButton(
+              buttonText: '3Dモデル確認',
+              iconPath: 'images/お皿アイコン.png',
+              nextPage: '/list')
         ],
       ),
     );
