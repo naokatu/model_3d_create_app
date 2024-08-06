@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import './selectButton.dart';
 
 class ListModelPage extends StatefulWidget {
   const ListModelPage({super.key});
@@ -8,15 +10,42 @@ class ListModelPage extends StatefulWidget {
 }
 
 class _ListModelPage extends State<ListModelPage> {
+  List<String> _models = [];
+  @override
+  void initState() {
+    super.initState();
+    _loadmodels();
+  }
+
+  void _loadmodels() async {
+    //final prefs = await SharedPreferences.getInstance();
+    //setState(() {
+      //_models = prefs.getStringList('models') ?? [];
+    //});
+  //}
+  // 仮のデータを使用
+    setState(() {
+      _models = [
+        '3D Model 1',
+        '3D Model 2',
+        '3D Model 3',
+        '3D Model 4',
+        '3D Model 5',
+      ];
+    });
+  }
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Text('作成したモデルを一覧表示するページです')
-        ],
-      ),
+    return ListView.builder(
+      itemCount: _models.length,
+      itemBuilder: (context, index) {
+        return SelectButton(
+            buttonText: _models[index],
+            iconPath: null, // 画像はなし
+            nextPage: '', // 遷移は一旦無効、空文字列を指定
+          );
+      },
+      
     );
   }
 }
