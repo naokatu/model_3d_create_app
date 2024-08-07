@@ -26,7 +26,7 @@ class _ListModelPage extends State<ListModelPage> {
   // 仮のデータを使用
     setState(() {
       _models = [
-        '3D Model 1',
+        'Astronaut',
         '3D Model 2',
         '3D Model 3',
         '3D Model 4',
