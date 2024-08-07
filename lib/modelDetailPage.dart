@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:model_viewer_plus/model_viewer_plus.dart';
 
 class ModelDetailPage extends StatefulWidget {
   final String content;
@@ -17,6 +18,15 @@ class _ModelDetailPage extends State<ModelDetailPage> {
         children: <Widget>[
           Text(
            '${widget.content}から遷移されました',
+          ),
+          Expanded(
+            child: ModelViewer(
+              src: 'assets/${widget.content}.glb',
+              iosSrc: 'assets/${widget.content}.usdz',
+              ar: true,
+              autoRotate: true,
+              cameraControls: true,
+            ),
           ),
         ],
       ),
