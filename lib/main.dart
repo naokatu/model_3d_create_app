@@ -71,6 +71,7 @@ class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
    return Scaffold(
+     resizeToAvoidBottomInset: false,
      appBar: Header(title: title,isHome: isHome, backRoute: backRoute),
      drawer: const CustomDrawer(),
      body: child,
