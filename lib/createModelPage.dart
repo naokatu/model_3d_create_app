@@ -94,6 +94,7 @@ class _CreateModelPage extends State<CreateModelPage> {
     }
   }
 
+  // TODO:モデルの作成処理
   Future<void> _createModel(String filename) async {
     for (int i = 0; i < _thumbnails.length; i++) {
       print('Processing image ${i + 1}');
