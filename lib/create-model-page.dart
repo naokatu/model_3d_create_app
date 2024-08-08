@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'dart:typed_data';
-import './inputDialog.dart';
-import './captureButton.dart';
-import './instructionWidget.dart';
-import './thumbnailWidget.dart';
-import './instructionCompleteWidget.dart';
-import './createModelButton.dart';
+import './input-dialog.dart';
+import './capture-button.dart';
+import './instruction-widget.dart';
+import './thumbnail-widget.dart';
+import './instruction-complete-widget.dart';
+import './create-model-button.dart';
 
 class CreateModelPage extends StatefulWidget {
   const CreateModelPage({super.key});
