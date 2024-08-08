@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:hack_3d_create_app/qrReaderPage.dart';
-import './modelCreatorPage.dart';
+import 'package:hack_3d_create_app/qr-reader-page.dart';
+import './model-creator-page.dart';
 import './header.dart';
-import './myHomePage.dart';
-import './customDrawer.dart';
-import './createModelPage.dart';
-import './listModelPage.dart';
-import './modelDetailPage.dart';
+import './my-home-page.dart';
+import './custom-drawer.dart';
+import './create-model-page.dart';
+import './list-model-page.dart';
+import './model-detail-page.dart';
 
 void main() {
   runApp(const MyApp());

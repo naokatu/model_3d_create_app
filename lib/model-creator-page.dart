@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import './selectButton.dart';
+import './select-button.dart';
 
 class ModelCreatorPage extends StatefulWidget {
   const ModelCreatorPage({super.key});
