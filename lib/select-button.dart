@@ -30,7 +30,7 @@ class SelectButton extends StatelessWidget {
       ),
       child: OutlinedButton(
           onPressed: () {
-            Navigator.of(context).pushNamed(nextPage,arguments: {'title': buttonText},);
+            Navigator.of(context).pushNamed(nextPage,arguments: {'filename': buttonText},);
           },
           style: OutlinedButton.styleFrom(
             backgroundColor: Colors.white,

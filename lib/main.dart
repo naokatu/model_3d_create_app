@@ -33,8 +33,8 @@ class MyApp extends StatelessWidget {
           return MaterialPageRoute(
             builder: (context) {
               return MainScreen(
-                title: args['title']!,
-                child: ModelDetailPage(content: args['title']!),
+                title: args['filename']!,
+                child: ModelDetailPage(filename: args['filename']!),
                 isHome: false,
                 backRoute: '/list',
               );

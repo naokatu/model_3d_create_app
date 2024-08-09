@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:path_provider/path_provider.dart';
+import 'dart:io';
 import './select-button.dart';
 
 class ListModelPage extends StatefulWidget {
@@ -14,26 +15,22 @@ class _ListModelPage extends State<ListModelPage> {
   @override
   void initState() {
     super.initState();
-    _loadmodels();
+    _loadModels();
   }
 
-  void _loadmodels() async {
-    //final prefs = await SharedPreferences.getInstance();
-    //setState(() {
-      //_models = prefs.getStringList('models') ?? [];
-    //});
-  //}
-  // 仮のデータを使用
+  void _loadModels() async {
+    final directory = await getApplicationDocumentsDirectory();
+    final modelsDir = Directory(directory.path);
+    final files = modelsDir.listSync(); // ディレクトリ内のファイルリストを取得
+
     setState(() {
-      _models = [
-        'Astronaut',
-        '3D Model 2',
-        '3D Model 3',
-        '3D Model 4',
-        '3D Model 5',
-      ];
+      _models = files
+          .where((file) => file.path.endsWith('.glb')) // .glbファイルのみを対象
+          .map((file) => file.uri.pathSegments.last.replaceAll('.glb', '')) // ファイル名だけを取り出してリストに追加
+          .toList();
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return ListView.builder(

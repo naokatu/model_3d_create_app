@@ -1,7 +1,21 @@
+buildscript {
+    ext.kotlin_version = '1.6.0' // Kotlinの最新安定バージョンを設定
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:7.0.4"
+         classpath "org.jetbrains.kotlin:$kotlin_version"
+        // 他の依存関係がある場合はここに追加
+    }
+}
+
 allprojects {
     repositories {
         google()
         mavenCentral()
+        maven { url "https://jitpack.io" } // ここを追加
     }
 }
 
