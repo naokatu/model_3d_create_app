@@ -3,9 +3,9 @@ import 'package:model_viewer_plus/model_viewer_plus.dart';
 import 'package:path_provider/path_provider.dart';
 
 class ModelDetailPage extends StatefulWidget {
-  final String title;
+  final String url;
 
-  const ModelDetailPage({super.key, required this.title});
+  const ModelDetailPage({super.key, required this.url});
 
   @override
   State<ModelDetailPage> createState() => _ModelDetailPage();
@@ -23,12 +23,12 @@ class _ModelDetailPage extends State<ModelDetailPage> {
   Future<void> _initializeModelPath() async {
     final directory = await getApplicationDocumentsDirectory();
     setState(() {
-      _modelPath = '${directory.path}/${widget.title}';
+      _modelPath = '${directory.path}/${widget.url}';
     });
   }
 
   void _navigateQR() async {
-    Navigator.of(context).pushNamed('/qr-create-page', arguments: widget.title);
+    Navigator.of(context).pushNamed('/qr-create-page', arguments: widget.url);
   }
 
   @override
@@ -40,7 +40,7 @@ class _ModelDetailPage extends State<ModelDetailPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text(
-                '${widget.title}です',
+                '${widget.url}です',
               ),
               Expanded(
                 child: ModelViewer(
