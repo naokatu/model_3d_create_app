@@ -21,7 +21,6 @@ class _QrReaderPageState extends State<QrReaderPage> {
           if (scanData.code != null) {
             Navigator.of(context).pushNamed('/model-detail',
                 arguments: {'title': scanData.code!});
-            controller.dispose();
           }
         });
       },
