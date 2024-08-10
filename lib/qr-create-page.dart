@@ -8,14 +8,15 @@ class QrCreatePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.white,
-      child: QrImageView(
-        data: url,
-        version: QrVersions.auto,
-        size: 250.0,
-        backgroundColor: Colors.white,
-      ),
+    return Center(
+        child: Container(
+          color: Colors.white,
+          child: QrImageView(
+            data: url,
+            version: QrVersions.auto,
+            size: 250.0,
+          ),
+      )
     );
   }
 }
