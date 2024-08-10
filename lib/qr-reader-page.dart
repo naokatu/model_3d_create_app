@@ -5,10 +5,10 @@ class QrReaderPage extends StatefulWidget {
   const QrReaderPage({super.key});
 
   @override
-  State<QrReaderPage> createState() => _QrReaderPageState();
+  State<QrReaderPage> createState() => _QrReaderPage();
 }
 
-class _QrReaderPageState extends State<QrReaderPage> {
+class _QrReaderPage extends State<QrReaderPage> {
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
   QRViewController? controller;
 
