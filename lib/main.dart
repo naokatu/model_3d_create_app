@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hack_3d_create_app/qr-reader-page.dart';
+import './qr-reader-page.dart';
 import './model-creator-page.dart';
 import './header.dart';
 import './my-home-page.dart';
@@ -7,6 +7,7 @@ import './custom-drawer.dart';
 import './create-model-page.dart';
 import './list-model-page.dart';
 import './model-detail-page.dart';
+import './qr-create-page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -32,12 +33,25 @@ class MyApp extends StatelessWidget {
           return MaterialPageRoute(
             builder: (context) {
               return MainScreen(
-                title: args['title']!,
+                title: args['title']!.split('/').last,
                 isHome: false,
                 backRoute: '/list',
                 child: ModelDetailPage(
-                  title: args['title']!,
+                  url: args['title']!,
                 ),
+              );
+            },
+          );
+        }
+
+        if (settings.name == '/qr-create-page') {
+          final url = settings.arguments as String;
+          return MaterialPageRoute(
+            builder: (context) {
+              return MainScreen(
+                title: 'QRコード',
+                isHome: false,
+                child: QrCreatePage(url: url),
               );
             },
           );
@@ -46,27 +60,27 @@ class MyApp extends StatelessWidget {
       },
       routes: <String, WidgetBuilder>{
         '/': (context) =>
-            const MainScreen(title: 'ホーム', child: MyHomePage(), isHome: true),
+        const MainScreen(title: 'ホーム', child: MyHomePage(), isHome: true),
         '/creator': (context) => const MainScreen(
             title: '作成者用',
-            child: ModelCreatorPage(),
             isHome: false,
-            backRoute: '/'), //isHome: 戻るボタンの有無, backRoute: 戻るボタンの遷移先
+            backRoute: '/',
+            child: ModelCreatorPage()), //isHome: 戻るボタンの有無, backRoute: 戻るボタンの遷移先
         '/qr': (context) => const MainScreen(
             title: 'QR読み取り',
-            child: QrReaderPage(),
             isHome: false,
-            backRoute: '/'),
+            backRoute: '/',
+            child: QrReaderPage()),
         '/list': (context) => const MainScreen(
             title: '保存したモデル一覧',
-            child: ListModelPage(),
             isHome: false,
-            backRoute: '/creator'),
+            backRoute: '/creator',
+            child: ListModelPage()),
         '/create-model': (context) => const MainScreen(
             title: 'モデル作成画面',
-            child: CreateModelPage(),
             isHome: false,
-            backRoute: '/creator')
+            backRoute: '/creator',
+            child: CreateModelPage()),
       },
     );
   }

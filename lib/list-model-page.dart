@@ -21,20 +21,19 @@ class _ListModelPage extends State<ListModelPage> {
   Future<void> _loadModels() async {
     try {
       final directory = await getApplicationDocumentsDirectory();
-      final dir = Directory(directory.path);
-      List<FileSystemEntity> files = await dir.list().toList();
-      List<String> jpgFiles = files
-          .whereType<File>()
-          .where((file) => file.path.toLowerCase().endsWith('.jpg'))
-          .map((file) => file.path.split('/').last)
-          .toList();
+      final file = File('${directory.path}/url/models.txt');
+      if (await file.exists()) {
+        List<String> lines = await file.readAsLines();
+        List<String> fileNames = lines.map((url) => url.split('/').last).toList();
 
-      setState(() {
-        _models = jpgFiles;
-      });
+        setState(() {
+          _models = fileNames;
+        });
+      } else {
+        print('models.txt file does not exist');
+      }
     } catch (e) {
       print('Error loading models: $e');
-      // エラーが発生した場合の処理をここに追加
     }
   }
 
@@ -44,12 +43,11 @@ class _ListModelPage extends State<ListModelPage> {
       itemCount: _models.length,
       itemBuilder: (context, index) {
         return SelectButton(
-            buttonText: _models[index],
-            iconPath: null, // 画像はなし
-            nextPage: '/model-detail', 
-          );
+          buttonText: _models[index],
+          iconPath: null, // 画像はなし
+          nextPage: '/model-detail',
+        );
       },
-      
     );
   }
 }
