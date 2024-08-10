@@ -100,33 +100,35 @@ class _CreateModelPage extends State<CreateModelPage> {
 
   // モデルの作成と画面遷移
   Future<void> _createModelAndNavigate(String filename, Map<String, double> dimensions) async {
-    final model = await _getModel(filename, dimensions);
-    final savedPath = await _saveModel(filename, model);
-    filename = savedPath.split('/').last;
+    final modelUrl = await _getModel(filename, dimensions);
+    await _saveModel(modelUrl);
+
     // 処理が終了したら
     if (mounted) {
       Navigator.of(context)
-          .pushNamed('/model-detail', arguments: {'title': filename});
+          .pushNamed('/model-detail', arguments: {'title': modelUrl});
     }
   }
 
-  // TODO:httpリクエストでモデルを取得
-  Future<Uint8List> _getModel(String filename, Map<String, double> dimensions) async {
+  // TODO:httpリクエストでURLを取得
+  Future<String> _getModel(String filename, Map<String, double> dimensions) async {
     // final model = create(dimension['width'], dimension['length'], dimension['height'])
     await Future.delayed(const Duration(seconds: 2));
 
-    return _thumbnails.first;
+    return 'example.com/text.glb';
   }
 
-  // TODO:実際のモデルでは型などを変える必要あり
-  Future<String> _saveModel(String filename, Uint8List modelData) async {
+  // テキストファイルにURLを書き込む
+  Future<void> _saveModel(String modelUrl) async {
     final directory = await getApplicationDocumentsDirectory();
-    final modelPath = '${directory.path}/$filename.jpg';
+    final urlPath = '${directory.path}/url/models.txt';
+    final file = File(urlPath);
 
-    final file = File(modelPath);
-    await file.writeAsBytes(modelData);
-    print('Saved to: $modelPath');
-    return modelPath;
+    if(!await file.exists()) {
+      await file.create(recursive: true);
+    }
+
+    await file.writeAsString('$modelUrl\n', mode: FileMode.append);
   }
 
 
