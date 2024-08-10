@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:qr_code_scanner/qr_code_scanner.dart';
 
 class QrReaderPage extends StatefulWidget {
   const QrReaderPage({super.key});
@@ -8,15 +9,27 @@ class QrReaderPage extends StatefulWidget {
 }
 
 class _QrReaderPage extends State<QrReaderPage> {
+  final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
+  QRViewController? controller;
+
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Text('ここはQRで3Dモデルを確認するページです')
-        ],
-      ),
+    return QRView(
+      key: qrKey,
+      onQRViewCreated: (controller) {
+        controller.scannedDataStream.listen((scanData) {
+          if (scanData.code != null) {
+            Navigator.of(context).pushNamed('/model-detail',
+                arguments: {'title': scanData.code!});
+          }
+        });
+      },
     );
+  }
+
+  @override
+  void dispose() {
+    controller?.dispose();
+    super.dispose();
   }
 }
