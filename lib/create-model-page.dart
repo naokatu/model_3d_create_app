@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'dart:typed_data';
 import 'dart:io';
 import './filename-input-dialog.dart';
@@ -10,6 +11,7 @@ import './instruction-widget.dart';
 import './thumbnail-widget.dart';
 import './instruction-complete-widget.dart';
 import './create-model-button.dart';
+import './api_service.dart';
 
 class CreateModelPage extends StatefulWidget {
   const CreateModelPage({super.key});
@@ -110,12 +112,11 @@ class _CreateModelPage extends State<CreateModelPage> {
     }
   }
 
-  // TODO:httpリクエストでURLを取得
+  // httpリクエストでURLを取得
   Future<String> _getModel(String filename, Map<String, double> dimensions) async {
-    // final model = create(dimension['width'], dimension['length'], dimension['height'])
-    await Future.delayed(const Duration(seconds: 2));
+    final modelUrl = await ApiService.createModel(filename: filename, dimensions: dimensions);
 
-    return 'example.com/text.glb';
+    return modelUrl;
   }
 
   // テキストファイルにURLを書き込む
