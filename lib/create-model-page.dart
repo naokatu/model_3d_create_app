@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
+import 'package:path_provider/path_provider.dart';
 import 'dart:typed_data';
+import 'dart:io';
 import './filename-input-dialog.dart';
 import './dimension-input-dialog.dart';
 import './capture-button.dart';
@@ -98,7 +100,9 @@ class _CreateModelPage extends State<CreateModelPage> {
 
   // モデルの作成と画面遷移
   Future<void> _createModelAndNavigate(String filename, Map<String, double> dimensions) async {
-    await _getModel(filename, dimensions);
+    final model = await _getModel(filename, dimensions);
+    final savedPath = await _saveModel(filename, model);
+    filename = savedPath.split('/').last;
     // 処理が終了したら
     if (mounted) {
       Navigator.of(context)
@@ -106,14 +110,25 @@ class _CreateModelPage extends State<CreateModelPage> {
     }
   }
 
-  // TODO:モデルの作成処理
-  Future<void> _getModel(String filename, Map<String, double> dimensions) async {
+  // TODO:httpリクエストでモデルを取得
+  Future<Uint8List> _getModel(String filename, Map<String, double> dimensions) async {
     // final model = create(dimension['width'], dimension['length'], dimension['height'])
-    for (int i = 0; i < _thumbnails.length; i++) {
-      print('Processing image ${i + 1}');
-    }
     await Future.delayed(const Duration(seconds: 2));
+
+    return _thumbnails.first;
   }
+
+  // TODO:実際のモデルでは型などを変える必要あり
+  Future<String> _saveModel(String filename, Uint8List modelData) async {
+    final directory = await getApplicationDocumentsDirectory();
+    final modelPath = '${directory.path}/$filename.jpg';
+
+    final file = File(modelPath);
+    await file.writeAsBytes(modelData);
+    print('Saved to: $modelPath');
+    return modelPath;
+  }
+
 
   @override
   Widget build(BuildContext context) {
