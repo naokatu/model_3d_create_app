@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
-class InputDialog extends StatefulWidget {
+class FilenameInputDialog extends StatefulWidget {
   final String title;
   final String hintText;
 
-  const InputDialog({super.key, required this.title, required this.hintText});
+  const FilenameInputDialog({super.key, required this.title, required this.hintText});
 
   @override
-  State<InputDialog> createState() => _InputDialogState();
+  State<FilenameInputDialog> createState() => _FilenameInputDialog();
 }
 
-class _InputDialogState extends State<InputDialog> {
+class _FilenameInputDialog extends State<FilenameInputDialog> {
   final TextEditingController _textFieldController = TextEditingController();
 
   @override
