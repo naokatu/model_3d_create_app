@@ -16,9 +16,9 @@ class CreateModelButton extends StatelessWidget {
       right: 10,
       bottom: 35,
       child: ElevatedButton(
-        onPressed: photoCount >= 5 ? onPressed : null,
+        onPressed: photoCount >= 1 ? onPressed : null,
         style: ElevatedButton.styleFrom(
-          backgroundColor: photoCount >= 5 ? Colors.blue : Colors.grey,
+          backgroundColor: photoCount >= 1 ? Colors.blue : Colors.grey,
           foregroundColor: Colors.white,
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
         ),
