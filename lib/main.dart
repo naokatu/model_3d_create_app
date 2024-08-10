@@ -33,11 +33,11 @@ class MyApp extends StatelessWidget {
           return MaterialPageRoute(
             builder: (context) {
               return MainScreen(
-                title: args['title']!,
+                title: args['title']!.split('/').last,
                 isHome: false,
                 backRoute: '/list',
                 child: ModelDetailPage(
-                  title: args['title']!,
+                  url: args['title']!,
                 ),
               );
             },
@@ -45,13 +45,13 @@ class MyApp extends StatelessWidget {
         }
 
         if (settings.name == '/qr-create-page') {
-          final filename = settings.arguments as String;
+          final url = settings.arguments as String;
           return MaterialPageRoute(
             builder: (context) {
               return MainScreen(
                 title: 'QRコード',
                 isHome: false,
-                child: QrCreatePage(filename: filename),
+                child: QrCreatePage(url: url),
               );
             },
           );
