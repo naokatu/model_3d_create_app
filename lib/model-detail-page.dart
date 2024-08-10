@@ -27,26 +27,51 @@ class _ModelDetailPage extends State<ModelDetailPage> {
     });
   }
 
+  void _navigateQR() async {
+    Navigator.of(context).pushNamed('/qr-create-page', arguments: widget.title);
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Text(
-            '${widget.title}です',
+    return Stack(
+      children: [
+        Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                '${widget.title}です',
+              ),
+              Expanded(
+                child: ModelViewer(
+                  src: '$_modelPath',
+                  iosSrc: '$_modelPath',
+                  ar: true,
+                  autoRotate: true,
+                  cameraControls: true,
+                ),
+              ),
+            ],
           ),
-          Expanded(
-            child: ModelViewer(
-              src: '$_modelPath',
-              iosSrc: '$_modelPath',
-              ar: true,
-              autoRotate: true,
-              cameraControls: true,
-            ),
+        ),
+        Positioned(
+          right: 16,
+          bottom: 64,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              ElevatedButton(
+                onPressed: _navigateQR,
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFF1A237E),
+                    foregroundColor: Colors.white,
+                    textStyle: const TextStyle(fontSize: 18)),
+                child: const Text('QRコードを作成する'),
+              ),
+            ],
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
