@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:path_provider/path_provider.dart';
+import 'dart:io';
 import './select-button.dart';
 
 class ListModelPage extends StatefulWidget {
@@ -14,26 +15,29 @@ class _ListModelPage extends State<ListModelPage> {
   @override
   void initState() {
     super.initState();
-    _loadmodels();
+    _loadModels();
   }
 
-  void _loadmodels() async {
-    //final prefs = await SharedPreferences.getInstance();
-    //setState(() {
-      //_models = prefs.getStringList('models') ?? [];
-    //});
-  //}
-  // 仮のデータを使用
-    setState(() {
-      _models = [
-        'Astronaut',
-        '3D Model 2',
-        '3D Model 3',
-        '3D Model 4',
-        '3D Model 5',
-      ];
-    });
+  Future<void> _loadModels() async {
+    try {
+      final directory = await getApplicationDocumentsDirectory();
+      final dir = Directory(directory.path);
+      List<FileSystemEntity> files = await dir.list().toList();
+      List<String> jpgFiles = files
+          .whereType<File>()
+          .where((file) => file.path.toLowerCase().endsWith('.jpg'))
+          .map((file) => file.path.split('/').last)
+          .toList();
+
+      setState(() {
+        _models = jpgFiles;
+      });
+    } catch (e) {
+      print('Error loading models: $e');
+      // エラーが発生した場合の処理をここに追加
+    }
   }
+
   @override
   Widget build(BuildContext context) {
     return ListView.builder(

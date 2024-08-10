@@ -1,15 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:model_viewer_plus/model_viewer_plus.dart';
+import 'package:path_provider/path_provider.dart';
 
 class ModelDetailPage extends StatefulWidget {
-  final String content;
-  const ModelDetailPage({super.key, required this.content});
+  final String title;
+
+  const ModelDetailPage({super.key, required this.title});
 
   @override
   State<ModelDetailPage> createState() => _ModelDetailPage();
 }
 
 class _ModelDetailPage extends State<ModelDetailPage> {
+  String? _modelPath;
+
+  @override
+  void initState() {
+    super.initState();
+    _initializeModelPath();
+  }
+
+  Future<void> _initializeModelPath() async {
+    final directory = await getApplicationDocumentsDirectory();
+    setState(() {
+      _modelPath = '${directory.path}/${widget.title}';
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -17,12 +34,12 @@ class _ModelDetailPage extends State<ModelDetailPage> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Text(
-           '${widget.content}から遷移されました',
+            '${widget.title}です',
           ),
           Expanded(
             child: ModelViewer(
-              src: 'assets/${widget.content}.glb',
-              iosSrc: 'assets/${widget.content}.usdz',
+              src: '$_modelPath',
+              iosSrc: '$_modelPath',
               ar: true,
               autoRotate: true,
               cameraControls: true,
