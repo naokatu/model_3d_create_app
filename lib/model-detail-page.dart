@@ -1,34 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:model_viewer_plus/model_viewer_plus.dart';
-import 'package:path_provider/path_provider.dart';
 
-class ModelDetailPage extends StatefulWidget {
+class ModelDetailPage extends StatelessWidget {
   final String url;
 
   const ModelDetailPage({super.key, required this.url});
 
-  @override
-  State<ModelDetailPage> createState() => _ModelDetailPage();
-}
-
-class _ModelDetailPage extends State<ModelDetailPage> {
-  String? _modelPath;
-
-  @override
-  void initState() {
-    super.initState();
-    _initializeModelPath();
-  }
-
-  Future<void> _initializeModelPath() async {
-    final directory = await getApplicationDocumentsDirectory();
-    setState(() {
-      _modelPath = '${directory.path}/${widget.url}';
-    });
-  }
-
-  void _navigateQR() async {
-    Navigator.of(context).pushNamed('/qr-create-page', arguments: widget.url);
+  void _navigateQR(BuildContext context) {
+    Navigator.of(context).pushNamed('/qr-create-page', arguments: url);
   }
 
   @override
@@ -40,12 +19,12 @@ class _ModelDetailPage extends State<ModelDetailPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text(
-                '${widget.url}です',
+                '$urlです',
               ),
               Expanded(
                 child: ModelViewer(
-                  src: '$_modelPath',
-                  iosSrc: '$_modelPath',
+                  src: url,
+                  iosSrc: url,
                   ar: true,
                   autoRotate: true,
                   cameraControls: true,
@@ -61,7 +40,7 @@ class _ModelDetailPage extends State<ModelDetailPage> {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               ElevatedButton(
-                onPressed: _navigateQR,
+                onPressed: () => _navigateQR(context),
                 style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFF1A237E),
                     foregroundColor: Colors.white,
