@@ -44,12 +44,11 @@ class _ListModelPage extends State<ListModelPage> {
       itemCount: _models.length,
       itemBuilder: (context, index) {
         return SelectButton(
-            buttonText: _models[index],
-            iconPath: null, // 画像はなし
-            nextPage: '/model-detail', 
-          );
+          buttonText: _models[index],
+          iconPath: null, // 画像はなし
+          nextPage: '/model-detail',
+        );
       },
-      
     );
   }
 }
