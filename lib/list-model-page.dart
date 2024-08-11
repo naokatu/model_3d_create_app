@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hack_3d_create_app/list-model-button.dart';
 import 'package:path_provider/path_provider.dart';
 import 'dart:io';
 import './select-button.dart';
@@ -11,7 +12,8 @@ class ListModelPage extends StatefulWidget {
 }
 
 class _ListModelPage extends State<ListModelPage> {
-  List<String> _models = [];
+  List<String> _modelNames = [];
+  List<String> _modelUrls = [];
   @override
   void initState() {
     super.initState();
@@ -24,10 +26,11 @@ class _ListModelPage extends State<ListModelPage> {
       final file = File('${directory.path}/url/models.txt');
       if (await file.exists()) {
         List<String> lines = await file.readAsLines();
-        List<String> fileNames = lines.map((url) => url.split('/').last).toList();
+        List<String> fileNames = lines.map((url) => Uri.decodeComponent(url.split('/').last.split('.').first)).toList();
 
         setState(() {
-          _models = fileNames;
+          _modelUrls = lines;
+          _modelNames = fileNames;
         });
       } else {
         print('models.txt file does not exist');
@@ -40,12 +43,11 @@ class _ListModelPage extends State<ListModelPage> {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: _models.length,
+      itemCount: _modelNames.length,
       itemBuilder: (context, index) {
-        return SelectButton(
-          buttonText: _models[index],
-          iconPath: null, // 画像はなし
-          nextPage: '/model-detail',
+        return ListModelButton(
+          buttonText: _modelNames[index],
+          url: _modelUrls[index],
         );
       },
     );
