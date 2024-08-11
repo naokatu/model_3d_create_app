@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:model_viewer_plus/model_viewer_plus.dart';
 
 class ModelDetailPage extends StatelessWidget {
-  final String url;
+  final String? url;
+  final String title;
 
-  const ModelDetailPage({super.key, required this.url});
+  const ModelDetailPage({super.key, required this.title, this.url});
 
   void _navigateQR(BuildContext context) {
     Navigator.of(context).pushNamed('/qr-create-page', arguments: url);
@@ -18,17 +19,14 @@ class ModelDetailPage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Text(
-                '$urlです',
-              ),
               Expanded(
-                child: ModelViewer(
-                  src: url,
-                  iosSrc: url,
+                child:ModelViewer(
+                  src: url!,
+                  iosSrc: url!,
                   ar: true,
                   autoRotate: true,
                   cameraControls: true,
-                ),
+                )
               ),
             ],
           ),
