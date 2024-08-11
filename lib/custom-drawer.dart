@@ -16,7 +16,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
           const DrawerHeader(
             child: Center(
               child: Text(
-                'サービス名',
+                'Dish3D',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 20,
