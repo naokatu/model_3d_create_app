@@ -35,11 +35,12 @@ class MyApp extends StatelessWidget {
           return MaterialPageRoute(
             builder: (context) {
               return MainScreen(
-                title: args['title']!.split('/').last,
+                title: args['title']!,
                 isHome: false,
                 backRoute: '/list',
                 child: ModelDetailPage(
-                  url: args['title']!,
+                  url: args['url']!,
+                  title: args['title']!
                 ),
               );
             },

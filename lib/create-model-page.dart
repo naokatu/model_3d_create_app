@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'dart:typed_data';
 import 'dart:io';
 import './filename-input-dialog.dart';
@@ -105,10 +104,12 @@ class _CreateModelPage extends State<CreateModelPage> {
     final modelUrl = await _getModel(filename, dimensions);
     await _saveModel(modelUrl);
 
+    final title = Uri.decodeComponent(modelUrl.split('/').last.split('.').first);
+
     // 処理が終了したら
     if (mounted) {
       Navigator.of(context)
-          .pushNamed('/model-detail', arguments: {'title': modelUrl});
+          .pushNamed('/model-detail', arguments: {'title': title, 'url': modelUrl});
     }
   }
 
